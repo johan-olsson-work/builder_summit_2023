@@ -1,0 +1,6 @@
+[submodule "azureml-examples"]
+	path = azureml-examples
+	url = https://github.com/Azure/azureml-examples.git
+[submodule "onnxruntime"]
+	path = onnxruntime
+	url = https://github.com/microsoft/onnxruntime.git

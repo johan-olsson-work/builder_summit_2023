@@ -1,0 +1,34 @@
+- name: Testing different techniques to map ip and serial
+  hosts: cameras
+  collections:
+    - axis.appmgmt
+  connection: local
+  become: no
+  gather_facts: no
+  vars:
+    default_user: root
+    default_pass: pass
+  tasks:
+
+#    - name: Refresh Inventory
+#      meta: refresh_inventory
+
+    # Print the output
+    - name: Verify inventory host
+      debug:
+        msg: "Found host: {{ inventory_hostname }} ansible_host:{{ ip_address }}"
+
+    - name: "Get Basic Device Info"
+      basicdeviceinfo:
+        device_ip: "{{ ip_address }}"
+        method: "getAllProperties"
+        user: "{{ default_user }}"
+        password: "{{ default_pass }}"
+
+
+    - name: "Get Installed applications"
+      basicdeviceinfo:
+        device_ip: "{{ ip_address }}"
+        method: "getApplications"
+        user: "{{ default_user }}"
+        password: "{{ default_pass }}"
